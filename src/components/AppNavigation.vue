@@ -3,14 +3,22 @@
     <NavigationMenu class="flex items-center justify-between h-16 max-w-full px-6 border-b">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <p class="mr-2 text-2xl font-bold text-primary">Music</p>
+          <router-link to="/">
+            <p class="mr-2 text-2xl font-bold text-primary">Music</p>
+          </router-link>
         </NavigationMenuItem>
 
         <NavigationMenuItem :class="navigationMenuTriggerStyle()">
           <p>Hi, User</p>
         </NavigationMenuItem>
 
-        <NavigationMenuItem :class="navigationMenuTriggerStyle()"> Manage </NavigationMenuItem>
+        <NavigationMenuItem :class="navigationMenuTriggerStyle()">
+          <router-link to="/manage">Manage</router-link>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem :class="navigationMenuTriggerStyle()">
+          <router-link :to="{ name: 'song', params: { songId: 'songID' } }">Song</router-link>
+        </NavigationMenuItem>
       </NavigationMenuList>
 
       <NavigationMenuList>
@@ -22,7 +30,7 @@
               <DialogHeader>
                 <DialogTitle>Your Account.</DialogTitle>
               </DialogHeader>
-              <!-- <Auth /> -->
+              <AppAuth />
             </DialogContent>
           </Dialog>
         </NavigationMenuItem>
@@ -85,6 +93,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Toggle } from "@/components/ui/toggle";
+
+import AppAuth from "./AppAuth.vue";
+
 import { Sun, Moon } from "lucide-vue-next";
 
 const dark = ref(false);
